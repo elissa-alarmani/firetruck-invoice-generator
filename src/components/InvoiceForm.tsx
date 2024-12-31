@@ -45,8 +45,15 @@ export default function Form({
       const value = e.target.value;
       setListingUrl(value);
       setUrlError(validateUrl(value) ? null : "Please enter a valid Garage Listing URL.");  
-    }
-    
+  }
+  
+    const isFormValid =
+      email &&
+      recipientName &&
+      listingUrl &&
+      !emailError &&
+      !urlError;
+
     return (
       <form onSubmit={onSubmit} className="flex flex-col gap-4 w-full max-w-md">
 
@@ -59,7 +66,7 @@ export default function Form({
             value={email}
             onChange={handleEmailChange}
             placeholder="johnsmith@gmail.com"
-            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
           {emailError && <p className="text-red-500 mt-1 text-sm">{emailError}</p>}
         </label>
@@ -73,7 +80,7 @@ export default function Form({
             value={recipientName}
             onChange={(e) => setRecipientName(e.target.value)}
             placeholder="Smith City Volunteer Fire Department"
-            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
         </label>
 
@@ -86,15 +93,18 @@ export default function Form({
             value={listingUrl}
             onChange={handleUrlChange}
             placeholder="Enter the fire truck listing URL"
-            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
           {urlError && <p className="text-red-500 mt-1 text-sm">{urlError}</p>}
         </label>
   
         <button
           type="submit"
-          className="p-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
-          disabled={emailError || urlError ? true : false}
+          className={`p-2 font-bold rounded-md focus:outline-none focus:ring-1 ${isFormValid
+              ? "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
+          disabled={!isFormValid}
         >
           Generate Invoice
         </button>

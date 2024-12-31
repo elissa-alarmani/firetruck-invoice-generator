@@ -16,12 +16,7 @@ export default function Home() {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!recipientName || !email || !listingUrl) {
-      setError("All fields are required.");
-      return;
-    }
-
+    
     try {
       setError(null);
       const data = await fetchListing(listingUrl); 
