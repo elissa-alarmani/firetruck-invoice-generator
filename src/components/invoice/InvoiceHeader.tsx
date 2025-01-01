@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "@react-pdf/renderer";
+import { View, Text, StyleSheet, Image, Link } from "@react-pdf/renderer";
 import { ListingResponseData } from "@/types/ListingResponseData";
 
 const styles = StyleSheet.create({
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         textAlign: "center",
+        color: "#000",
+        textDecoration: "none",
     },
     rightColumn: {
         flexDirection: "column",
@@ -71,11 +73,15 @@ const InvoiceHeader = ({
         <View style={styles.container}>
             {/* Left: Logo */}
             <View style={styles.leftColumn}>
-                <Image
-                    style={styles.logo}
-                    src="/images/garage-invoice-logo.png" 
-                />
-                <Text style={styles.companyName}>Garage Technologies, Inc.</Text>
+                <Link src="https://www.withgarage.com/">
+                    <Image
+                        style={styles.logo}
+                        src="/images/garage-invoice-logo.png"
+                    />
+                </Link>
+                <Link src="https://www.withgarage.com/" style={styles.companyName}>
+                    <Text>Garage Technologies, Inc.</Text>
+                </Link>
             </View>
 
             {/* Right: Invoice Details */}

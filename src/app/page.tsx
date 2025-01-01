@@ -57,13 +57,15 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen p-8 bg-gray-50">
-      <Image
-        src="/images/garage-holiday-logo.svg" 
-        alt="Garage Invoice Logo"
-        width={300} 
-        height={160} 
-        className="mb-2"
-      />
+      <a href="https://www.withgarage.com/" target="_blank" rel="noopener noreferrer">
+        <Image
+          src="/images/garage-holiday-logo.svg"
+          alt="Garage Invoice Logo"
+          width={300}
+          height={160}
+          className="mb-2"
+        />
+      </a>
       <h1 className="text-2xl font-bold mb-4">Fire Truck Invoice Generator</h1>
       <p className="text-gray-600 mb-2">
         Fill out the information below to receive a personalized invoice.
