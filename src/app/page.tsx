@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Form from "../components/InvoiceForm";
 import { fetchListing } from "../services/api";
 import { ListingResponseData } from "@/types/ListingResponseData";
+import InvoiceTemplate from "@/components/InvoiceTemplate";
+import { PDFViewer } from "@react-pdf/renderer";
 
 export default function Home() {
   const [recipientName, setRecipientName] = useState("");
@@ -13,14 +15,14 @@ export default function Home() {
     null
   );
   const [error, setError] = useState<string | null>(null);
-
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
       setError(null);
-      const data = await fetchListing(listingUrl); 
+      const data = await fetchListing(listingUrl);
       setListingData(data);
+      setIsAccordionOpen(true);
     } catch (err: any) {
       setError(err.message || "An error occurred while fetching listing data.");
       setListingData(null);
@@ -33,7 +35,7 @@ export default function Home() {
       <p className="text-gray-600 mb-4">
         Fill out the information below to receive a personalized invoice.
       </p>
-
+      {/* Form Component */}
       <Form
         email={email}
         setEmail={setEmail}
@@ -45,18 +47,23 @@ export default function Home() {
         error={error}
       />
 
-      {/* Preview listing data for developing */}
-      {listingData && (
-        <div className="mt-8 w-full max-w-lg p-4 border border-gray-300 rounded-md shadow-md bg-white">
-          <h2 className="text-lg font-bold">Invoice</h2>
-          <p><strong>Recipient Name:</strong> {recipientName}</p>
-          <p><strong>Email Address:</strong> {email}</p>
-          <p><strong>Listing Title:</strong> {listingData.listingTitle}</p>
-          <p><strong>Price:</strong> ${listingData.sellingPrice.toLocaleString()}</p>
-          <p><strong>Description:</strong> {listingData.listingDescription}</p>
-          
+      {/* Accordion Section */}
+      <div
+        className={`mt-8 w-full max-w-lg transition-all duration-300 ease-in-out overflow-hidden ${
+          isAccordionOpen ? "max-h-screen" : "max-h-0"
+        } border border-gray-300 rounded-md shadow-md bg-white`}
+      >
+        <div className="p-4">
+          {listingData && (
+            <>
+              <h2 className="text-lg font-bold mb-4">Invoice Preview</h2>
+              <PDFViewer style={{ width: "100%", height: "60vh" }}>
+                <InvoiceTemplate listingData={listingData} recipientName={recipientName} email={email} />
+              </PDFViewer>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
