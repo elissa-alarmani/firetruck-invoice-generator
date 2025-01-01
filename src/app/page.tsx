@@ -1,11 +1,13 @@
 "use client";
 
+import { saveAs } from 'file-saver';
 import React, { useState } from "react";
 import Form from "../components/InvoiceForm";
 import { fetchListing } from "../services/api";
 import { ListingResponseData } from "@/types/ListingResponseData";
 import InvoiceTemplate from "@/components/InvoiceTemplate";
 import { PDFViewer } from "@react-pdf/renderer";
+import { pdf } from '@react-pdf/renderer';
 
 export default function Home() {
   const [recipientName, setRecipientName] = useState("");
@@ -27,6 +29,24 @@ export default function Home() {
       setError(err.message || "An error occurred while fetching listing data.");
       setListingData(null);
     }
+  };
+
+
+  const handleDownload = async () => {
+    if (!listingData) {
+      console.error("No listing data available for generating the invoice.");
+      return;
+    }
+    const blob = await pdf(
+      <InvoiceTemplate
+        listingData={listingData} 
+        recipientName={recipientName}
+        email={email}
+      />
+    ).toBlob();
+    const fileName = `Garage-Invoice-${listingData.id}.pdf`;
+
+    saveAs(blob, fileName);
   };
 
   return (
@@ -56,9 +76,21 @@ export default function Home() {
         <div className="p-4">
           {listingData && (
             <>
-              <h2 className="text-lg font-bold mb-4">Invoice Preview</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold">Invoice Preview</h2>
+                <button
+                  onClick={handleDownload}
+                  className="p-2 font-bold rounded-md focus:outline-none focus:ring-1 bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
+                >
+                  Download Invoice
+                </button>
+              </div>
               <PDFViewer style={{ width: "100%", height: "60vh" }}>
-                <InvoiceTemplate listingData={listingData} recipientName={recipientName} email={email} />
+                <InvoiceTemplate
+                  listingData={listingData}
+                  recipientName={recipientName}
+                  email={email}
+                />
               </PDFViewer>
             </>
           )}
