@@ -8,6 +8,7 @@ import { ListingResponseData } from "@/types/ListingResponseData";
 import InvoiceTemplate from "@/components/InvoiceTemplate";
 import { PDFViewer } from "@react-pdf/renderer";
 import { pdf } from '@react-pdf/renderer';
+import Image from 'next/image';
 
 export default function Home() {
   const [recipientName, setRecipientName] = useState("");
@@ -25,8 +26,12 @@ export default function Home() {
       const data = await fetchListing(listingUrl);
       setListingData(data);
       setIsAccordionOpen(true);
-    } catch (err: any) {
-      setError(err.message || "An error occurred while fetching listing data.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An error occurred while fetching listing data.");
+      }
       setListingData(null);
     }
   };
@@ -50,9 +55,16 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-50">
-      <h1 className="text-2xl font-bold mb-6">Fire Truck Invoice Generator</h1>
-      <p className="text-gray-600 mb-4">
+    <div className="flex flex-col items-center justify-start min-h-screen p-8 bg-gray-50">
+      <Image
+        src="/images/garage-holiday-logo.svg" 
+        alt="Garage Invoice Logo"
+        width={300} 
+        height={160} 
+        className="mb-2"
+      />
+      <h1 className="text-2xl font-bold mb-4">Fire Truck Invoice Generator</h1>
+      <p className="text-gray-600 mb-2">
         Fill out the information below to receive a personalized invoice.
       </p>
       {/* Form Component */}

@@ -9,7 +9,7 @@ const interFont = Inter({
 
 export const metadata: Metadata = {
   title: "Fire Truck Invoice Generator",
-  description: "PDF Invoice Generator for Fire Truck Listings",
+  description: "Invoice Generator for Fire Truck Listings",
 };
 
 export default function RootLayout({

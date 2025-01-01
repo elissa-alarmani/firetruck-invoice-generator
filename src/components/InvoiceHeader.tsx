@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
+import { View, Text, StyleSheet, Image } from "@react-pdf/renderer";
 import { ListingResponseData } from "@/types/ListingResponseData";
 
 const styles = StyleSheet.create({
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: "auto",
         marginBottom: 5,
+        alignItems: "flex-start"
     },
     companyName: {
         fontSize: 14,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     },
     invoiceTitle: {
         fontSize: 24,
-        fontWeight: 900,
+        fontWeight: "bold",
         marginBottom: 5,
     },
     dateLabel: {
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 10,
     },
-
     label: {
         fontSize: 12,
     },
@@ -71,7 +71,10 @@ const InvoiceHeader = ({
         <View style={styles.container}>
             {/* Left: Logo */}
             <View style={styles.leftColumn}>
-                {/* <Image style={styles.logo} src="src/components/garage-invoice-logo.png" /> Update the path */}
+                <Image
+                    style={styles.logo}
+                    src="/images/garage-invoice-logo.png" 
+                />
                 <Text style={styles.companyName}>Garage Technologies, Inc.</Text>
             </View>
 
@@ -80,11 +83,13 @@ const InvoiceHeader = ({
                 <Text style={styles.invoiceTitle}>INVOICE</Text>
                 <Text style={styles.label}># {listingData.id.slice(0, 9)}</Text>
                 <View style={styles.dateLabel}>
-                    <Text style={styles.invoiceDateLabel}>
-                        Date:  
-                    </Text>
+                    <Text style={styles.invoiceDateLabel}>Date:</Text>
                     <Text style={styles.label}>
-                        {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                        {new Date().toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
                     </Text>
                 </View>
                 <Text style={styles.invoiceBalanceDue}>
