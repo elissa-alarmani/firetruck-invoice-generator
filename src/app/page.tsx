@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Form from "../components/InvoiceForm";
 import { fetchListing } from "../services/api";
 import { ListingResponseData } from "@/types/ListingResponseData";
-import InvoiceTemplate from "@/components/InvoiceTemplate";
+import InvoiceTemplate from "@/components/invoice/InvoiceTemplate";
 import { PDFViewer } from "@react-pdf/renderer";
 import { pdf } from '@react-pdf/renderer';
 import Image from 'next/image';
@@ -47,6 +47,7 @@ export default function Home() {
         listingData={listingData} 
         recipientName={recipientName}
         email={email}
+        listingUrl={listingUrl}
       />
     ).toBlob();
     const fileName = `Garage-Invoice-${listingData.id}.pdf`;
@@ -102,6 +103,7 @@ export default function Home() {
                   listingData={listingData}
                   recipientName={recipientName}
                   email={email}
+                  listingUrl={listingUrl}
                 />
               </PDFViewer>
             </>

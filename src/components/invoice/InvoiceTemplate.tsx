@@ -65,10 +65,12 @@ const InvoiceTemplate = ({
     listingData,
     recipientName,
     email,
+    listingUrl,
 }: {
     listingData: ListingResponseData;
     recipientName: string;
     email: string;
+    listingUrl: string;
 }) => {
     return (
         <Document>
@@ -83,7 +85,7 @@ const InvoiceTemplate = ({
                 />
                 <InvoiceTable listingData={listingData} />
                 <FeaturesAndConditionSection listingData={listingData} />
-                <InvoiceDetails listingData={listingData} />
+                <InvoiceDetails listingData={listingData} listingUrl={listingUrl}/>
             </Page>
         </Document>
     );

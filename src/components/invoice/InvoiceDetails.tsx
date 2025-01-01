@@ -5,7 +5,6 @@ import { ListingResponseData } from "@/types/ListingResponseData";
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    // padding: 15,
   },
   descriptionContainer: {
     marginBottom: 15,
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 14,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5, 
     color: "#333",
   },
   description: {
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   image: {
-    width: "25%", 
+    width: "25%",
     height: "auto",
     border: "1px solid #d0d0d0",
     borderRadius: 5,
@@ -37,18 +36,43 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#999",
   },
+  listingLinkContainer: {
+    flexDirection: "row", 
+    alignItems: "center", 
+    flexWrap: "wrap",
+    marginBottom: 5,
+  },
+  listingText: {
+    fontSize: 12,
+    color: "#555",
+    marginBottom: 5,
+  },
+  listingLink: {
+    fontSize: 10, 
+    color: "#0073e6",
+    textDecoration: "underline",
+    wordBreak: "break-all", 
+  },
 });
 
 const InvoiceDetails = ({
   listingData,
+  listingUrl,
 }: {
   listingData: ListingResponseData;
+  listingUrl: string;
 }) => {
   return (
     <View style={styles.container}>
       {/* Description */}
       <View style={styles.descriptionContainer}>
         <Text style={styles.header}>Description</Text>
+        
+        {/* Viewing Listing Link */}
+        <View style={styles.listingLinkContainer}>
+          <Text style={styles.listingText}>View listing: </Text>
+          <Text style={styles.listingLink}>{listingUrl}</Text>
+        </View>
         <Text style={styles.description}>{listingData.listingDescription}</Text>
       </View>
 
