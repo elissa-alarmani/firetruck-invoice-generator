@@ -37,16 +37,23 @@ export default function Form({
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      setEmail(value);
-      setEmailError(validateEmail(value) ? null : "Please enter a valid email address.");
-    }
+      setEmail(value); 
+    };
+
+    const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setEmailError(value && !validateEmail(value) ? "Please enter a valid email address." : null);
+    };
 
     const handleUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setListingUrl(value);
-      setUrlError(validateUrl(value) ? null : "Please enter a valid Garage Listing URL.");  
-  }
-  
+    };
+
+    const handleUrlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setUrlError(value && !validateUrl(value) ? "Please enter a valid Garage Listing URL." : null);
+    };
     const isFormValid =
       email &&
       recipientName &&
@@ -65,6 +72,7 @@ export default function Form({
             type="text"
             value={email}
             onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
             placeholder="johnsmith@gmail.com"
             className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
@@ -92,6 +100,7 @@ export default function Form({
             type="text"
             value={listingUrl}
             onChange={handleUrlChange}
+            onBlur={handleUrlBlur}
             placeholder="Enter the fire truck listing URL"
             className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
