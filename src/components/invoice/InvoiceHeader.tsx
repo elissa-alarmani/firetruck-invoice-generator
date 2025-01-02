@@ -66,7 +66,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export function InvoiceHeader({ id, sellingPrice }: InvoiceHeaderProps) {
+export function InvoiceHeader({
+  id,
+  sellingPrice,
+}: InvoiceHeaderProps) {
   return (
     <View style={styles.container}>
       {/* Left: Logo */}

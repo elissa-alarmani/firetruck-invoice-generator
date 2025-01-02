@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export function InvoiceTable({
+export function InvoiceTable ({
   sellingPrice,
   listingTitle,
-}: InvoiceTableProps) {
+}: InvoiceTableProps){
   const subtotal = sellingPrice;
   const tax = 0;
   const total = subtotal + tax;

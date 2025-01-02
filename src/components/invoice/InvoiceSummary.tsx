@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function InvoiceSummary({
+export function InvoiceSummary ({
   userEmail,
   addressPrimary,
   addressSecondary,

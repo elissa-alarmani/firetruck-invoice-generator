@@ -19,7 +19,7 @@ export function InvoicePreview({
   email,
   listingUrl,
   onDownload,
-}: InvoicePreviewProps) {
+} : InvoicePreviewProps)  {
   if (!listingData) return null;
 
   return (

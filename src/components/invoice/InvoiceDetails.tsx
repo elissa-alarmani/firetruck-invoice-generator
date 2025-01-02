@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function InvoiceDetails({
+export function InvoiceDetails ({
   listingDescription,
   imageUrls,
   listingUrl,
