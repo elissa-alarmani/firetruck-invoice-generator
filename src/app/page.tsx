@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
 import { saveAs } from 'file-saver';
-import React, { useState } from "react";
-import Form from "../components/InvoiceForm";
-import { fetchListing } from "../services/api";
-import { ListingResponseData } from "@/types/ListingResponseData";
-import InvoiceTemplate from "@/components/invoice/InvoiceTemplate";
-import { PDFViewer } from "@react-pdf/renderer";
+import React, { useState } from 'react';
+import Form from '../components/InvoiceForm';
+import { fetchListing } from '../services/api';
+import { ListingResponseData } from '@/types/ListingResponseData';
+import InvoiceTemplate from '@/components/invoice/InvoiceTemplate';
+import { PDFViewer } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import Image from 'next/image';
 
 export default function Home() {
-  const [recipientName, setRecipientName] = useState("");
-  const [email, setEmail] = useState("");
-  const [listingUrl, setListingUrl] = useState("");
+  const [recipientName, setRecipientName] = useState('');
+  const [email, setEmail] = useState('');
+  const [listingUrl, setListingUrl] = useState('');
   const [listingData, setListingData] = useState<ListingResponseData | null>(
-    null
+    null,
   );
   const [error, setError] = useState<string | null>(null);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
@@ -30,25 +30,24 @@ export default function Home() {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("An error occurred while fetching listing data.");
+        setError('An error occurred while fetching listing data.');
       }
       setListingData(null);
     }
   };
 
-
   const handleDownload = async () => {
     if (!listingData) {
-      console.error("No listing data available for generating the invoice.");
+      console.error('No listing data available for generating the invoice.');
       return;
     }
     const blob = await pdf(
       <InvoiceTemplate
-        listingData={listingData} 
+        listingData={listingData}
         recipientName={recipientName}
         email={email}
         listingUrl={listingUrl}
-      />
+      />,
     ).toBlob();
     const fileName = `Garage-Invoice-${listingData.id}.pdf`;
 
@@ -56,8 +55,12 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen p-8 bg-gray-50">
-      <a href="https://www.withgarage.com/" target="_blank" rel="noopener noreferrer">
+    <div className="flex min-h-screen flex-col items-center justify-start bg-gray-50 p-8">
+      <a
+        href="https://www.withgarage.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Image
           src="/images/garage-holiday-logo.svg"
           alt="Garage Invoice Logo"
@@ -66,8 +69,8 @@ export default function Home() {
           className="mb-2"
         />
       </a>
-      <h1 className="text-2xl font-bold mb-4">Fire Truck Invoice Generator</h1>
-      <p className="text-gray-600 mb-2">
+      <h1 className="mb-4 text-2xl font-bold">Fire Truck Invoice Generator</h1>
+      <p className="mb-2 text-gray-600">
         Fill out the information below to receive a personalized invoice.
       </p>
       {/* Form Component */}
@@ -84,23 +87,23 @@ export default function Home() {
 
       {/* Accordion Section */}
       <div
-        className={`mt-8 w-full max-w-lg transition-all duration-300 ease-in-out overflow-hidden ${
-          isAccordionOpen ? "max-h-screen" : "max-h-0"
-        } border border-gray-300 rounded-md shadow-md bg-white`}
+        className={`mt-8 w-full max-w-lg overflow-hidden transition-all duration-300 ease-in-out ${
+          isAccordionOpen ? 'max-h-screen' : 'max-h-0'
+        } rounded-md border border-gray-300 bg-white shadow-md`}
       >
         <div className="p-4">
           {listingData && (
             <>
-              <div className="flex items-center justify-between mb-4">
+              <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-bold">Invoice Preview</h2>
                 <button
                   onClick={handleDownload}
-                  className="p-2 font-bold rounded-md focus:outline-none focus:ring-1 bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
+                  className="rounded-md bg-orange-500 p-2 font-bold text-white hover:bg-orange-600 focus:outline-none focus:ring-1 focus:ring-orange-500"
                 >
                   Download Invoice
                 </button>
               </div>
-              <PDFViewer style={{ width: "100%", height: "60vh" }}>
+              <PDFViewer style={{ width: '100%', height: '60vh' }}>
                 <InvoiceTemplate
                   listingData={listingData}
                   recipientName={recipientName}

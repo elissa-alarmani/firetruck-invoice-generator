@@ -1,55 +1,55 @@
-import React from "react";
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
-import { ListingResponseData } from "@/types/ListingResponseData";
+import React from 'react';
+import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { ListingResponseData } from '@/types/ListingResponseData';
 
 const styles = StyleSheet.create({
   table: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    borderStyle: "solid",
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: "#e4e4e4",
+    borderColor: '#e4e4e4',
     marginBottom: 10,
   },
   tableRow: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   tableCell: {
     padding: 5,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: "#e4e4e4",
+    borderColor: '#e4e4e4',
     flex: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
   header: {
-    fontWeight: "bold",
-    backgroundColor: "black",
-    color: "white",
+    fontWeight: 'bold',
+    backgroundColor: 'black',
+    color: 'white',
   },
   totalsContainer: {
-    flexDirection: "column",
-    alignItems: "flex-end", 
+    flexDirection: 'column',
+    alignItems: 'flex-end',
     marginTop: 10,
-    marginRight: 10, 
+    marginRight: 10,
   },
   totalRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "30%", 
-    marginBottom: 4, 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '30%',
+    marginBottom: 4,
   },
   label: {
     fontSize: 12,
-    fontWeight: "normal", 
+    fontWeight: 'normal',
   },
   value: {
     fontSize: 12,
-    textAlign: "right", 
+    textAlign: 'right',
   },
   totals: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 14,
   },
 });
@@ -60,8 +60,8 @@ const InvoiceTable = ({
   listingData: ListingResponseData;
 }) => {
   const subtotal = listingData.sellingPrice;
-  const tax = 0; 
-  const total = subtotal + tax; 
+  const tax = 0;
+  const total = subtotal + tax;
 
   return (
     <>

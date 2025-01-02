@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet, Image } from "@react-pdf/renderer";
-import { ListingResponseData } from "@/types/ListingResponseData";
+import React from 'react';
+import { View, Text, StyleSheet, Image } from '@react-pdf/renderer';
+import { ListingResponseData } from '@/types/ListingResponseData';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,46 +12,46 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 14,
-    fontWeight: "bold",
-    marginBottom: 5, 
-    color: "#333",
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#333',
   },
   description: {
     fontSize: 12,
-    color: "#555",
+    color: '#555',
     lineHeight: 1.6,
-    textAlign: "justify",
+    textAlign: 'justify',
   },
   imageContainer: {
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
     marginTop: 15,
   },
   image: {
-    width: "25%",
-    height: "auto",
-    border: "1px solid #d0d0d0",
+    width: '25%',
+    height: 'auto',
+    border: '1px solid #d0d0d0',
     borderRadius: 5,
   },
   noImage: {
     fontSize: 12,
-    color: "#999",
+    color: '#999',
   },
   listingLinkContainer: {
-    flexDirection: "row", 
-    alignItems: "center", 
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
     marginBottom: 5,
   },
   listingText: {
     fontSize: 12,
-    color: "#555",
+    color: '#555',
     marginBottom: 5,
   },
   listingLink: {
-    fontSize: 10, 
-    color: "#0073e6",
-    textDecoration: "underline",
-    wordBreak: "break-all", 
+    fontSize: 10,
+    color: '#0073e6',
+    textDecoration: 'underline',
+    wordBreak: 'break-all',
   },
 });
 
@@ -67,7 +67,7 @@ const InvoiceDetails = ({
       {/* Description */}
       <View style={styles.descriptionContainer}>
         <Text style={styles.header}>Description</Text>
-        
+
         {/* Viewing Listing Link */}
         <View style={styles.listingLinkContainer}>
           <Text style={styles.listingText}>View listing: </Text>

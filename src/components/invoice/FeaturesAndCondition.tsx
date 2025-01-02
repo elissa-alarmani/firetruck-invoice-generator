@@ -1,24 +1,24 @@
-import React from "react";
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
-import { ListingResponseData } from "@/types/ListingResponseData";
+import React from 'react';
+import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { ListingResponseData } from '@/types/ListingResponseData';
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 15,
     marginBottom: 15,
-    borderTop: "1px solid #e0e0e0",
+    borderTop: '1px solid #e0e0e0',
     paddingTop: 10,
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   column: {
-    width: "48%",
+    width: '48%',
   },
   header: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
     paddingBottom: 2,
   },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 });
 
 const formatNumberWithCommas = (number: number) =>
-  number.toLocaleString("en-US");
+  number.toLocaleString('en-US');
 
 const getCurrentYear = () => new Date().getFullYear();
 
@@ -40,13 +40,15 @@ const FeaturesAndConditionSection = ({
 }) => {
   const specifications = [
     `Brand: ${listingData.itemBrand}`,
-    `Mileage: ${listingData.mileage !== null ? formatNumberWithCommas(listingData.mileage) + " miles" : "Not Available"}`,
-    listingData.itemAge !== null ? `Age: ${getCurrentYear() - listingData.itemAge} years` : null,
+    `Mileage: ${listingData.mileage !== null ? formatNumberWithCommas(listingData.mileage) + ' miles' : 'Not Available'}`,
+    listingData.itemAge !== null
+      ? `Age: ${getCurrentYear() - listingData.itemAge} years`
+      : null,
     listingData.itemLength
       ? `Dimensions: ${formatNumberWithCommas(
-          listingData.itemLength
+          listingData.itemLength,
         )}ft x ${formatNumberWithCommas(
-          listingData.itemWidth
+          listingData.itemWidth,
         )}ft x ${formatNumberWithCommas(listingData.itemHeight)}ft`
       : null,
     listingData.itemWeight
@@ -62,13 +64,13 @@ const FeaturesAndConditionSection = ({
 
   const condition = [
     listingData.hasServiceRecords
-      ? "Service Records: Available"
-      : "Service Records: Not Available",
-    listingData.hasRust ? "Rust: Yes" : "Rust: No",
+      ? 'Service Records: Available'
+      : 'Service Records: Not Available',
+    listingData.hasRust ? 'Rust: Yes' : 'Rust: No',
     listingData.isFourWheelDrive !== null
       ? listingData.isFourWheelDrive
-        ? "Drive: 4WD enabled"
-        : "Drive: Not 4WD"
+        ? 'Drive: 4WD enabled'
+        : 'Drive: Not 4WD'
       : null,
   ].filter(Boolean);
 
