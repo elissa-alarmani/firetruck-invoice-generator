@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 import Form from '../components/InvoiceForm';
 import { fetchListing } from '../services/api';
 import { ListingResponseData } from '@/types/ListingResponseData';
-import { PDFViewer } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import Image from 'next/image';
 import { InvoiceTemplate } from '@/components/invoice/InvoiceTemplate';
+import { InvoicePreview } from '@/components/InvoicePreview';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   const [recipientName, setRecipientName] = useState('');
@@ -55,66 +56,47 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start bg-gray-50 p-8">
-      <a
-        href="https://www.withgarage.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src="/images/garage-holiday-logo.svg"
-          alt="Garage Invoice Logo"
-          width={300}
-          height={160}
-          className="mb-2"
+    <div className="flex min-h-screen flex-col">
+      <main className="flex flex-grow flex-col items-center justify-start bg-gray-50 p-8">
+        <a
+          href="https://www.withgarage.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/garage-holiday-logo.svg"
+            alt="Garage Invoice Logo"
+            width={300}
+            height={160}
+            className="mb-2"
+          />
+        </a>
+        <h1 className="mb-4 text-2xl font-bold">
+          Fire Truck Invoice Generator
+        </h1>
+        <p className="mb-2 text-gray-600">
+          Fill out the information below to receive a personalized invoice.
+        </p>
+        <Form
+          email={email}
+          setEmail={setEmail}
+          recipientName={recipientName}
+          setRecipientName={setRecipientName}
+          listingUrl={listingUrl}
+          setListingUrl={setListingUrl}
+          onSubmit={handleFormSubmit}
+          error={error}
         />
-      </a>
-      <h1 className="mb-4 text-2xl font-bold">Fire Truck Invoice Generator</h1>
-      <p className="mb-2 text-gray-600">
-        Fill out the information below to receive a personalized invoice.
-      </p>
-      {/* Form Component */}
-      <Form
-        email={email}
-        setEmail={setEmail}
-        recipientName={recipientName}
-        setRecipientName={setRecipientName}
-        listingUrl={listingUrl}
-        setListingUrl={setListingUrl}
-        onSubmit={handleFormSubmit}
-        error={error}
-      />
-
-      {/* Accordion Section */}
-      <div
-        className={`mt-8 w-full max-w-lg overflow-hidden transition-all duration-300 ease-in-out ${
-          isAccordionOpen ? 'max-h-screen' : 'max-h-0'
-        } rounded-md border border-gray-300 bg-white shadow-md`}
-      >
-        <div className="p-4">
-          {listingData && (
-            <>
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-bold">Invoice Preview</h2>
-                <button
-                  onClick={handleDownload}
-                  className="rounded-md bg-orange-500 p-2 font-bold text-white hover:bg-orange-600 focus:outline-none focus:ring-1 focus:ring-orange-500"
-                >
-                  Download Invoice
-                </button>
-              </div>
-              <PDFViewer style={{ width: '100%', height: '60vh' }}>
-                <InvoiceTemplate
-                  listingData={listingData}
-                  recipientName={recipientName}
-                  email={email}
-                  listingUrl={listingUrl}
-                />
-              </PDFViewer>
-            </>
-          )}
-        </div>
-      </div>
+        <InvoicePreview
+          isOpen={isAccordionOpen}
+          listingData={listingData}
+          recipientName={recipientName}
+          email={email}
+          listingUrl={listingUrl}
+          onDownload={handleDownload}
+        />
+      </main>
+      <Footer />
     </div>
   );
 }
