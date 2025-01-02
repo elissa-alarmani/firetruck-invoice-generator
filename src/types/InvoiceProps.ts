@@ -35,6 +35,11 @@ export type InvoiceFeaturesAndConditionProps = {
   isFourWheelDrive: boolean;
 };
 
+export type InvoiceAuctionProps = {
+  expirationDate: string;
+  finalPrice: number;
+};
+
 export type InvoiceDetailsProps = {
   listingDescription: string;
   imageUrls: string[];

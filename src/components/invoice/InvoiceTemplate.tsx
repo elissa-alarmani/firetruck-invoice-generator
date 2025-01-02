@@ -15,7 +15,9 @@ import {
   InvoiceHeaderProps,
   InvoiceSummaryProps,
   InvoiceTableProps,
+  InvoiceAuctionProps,
 } from '@/types/InvoiceProps';
+import { InvoiceAuction } from './InvoiceAuction';
 
 Font.register({
   family: 'Inter',
@@ -84,12 +86,14 @@ export const InvoiceTemplate = ({
     summaryProps,
     tableProps,
     featuresProps,
+    auctionProps,
     detailsProps,
   }: {
     headerProps: InvoiceHeaderProps;
     summaryProps: InvoiceSummaryProps;
     tableProps: InvoiceTableProps;
     featuresProps: InvoiceFeaturesAndConditionProps;
+    auctionProps: InvoiceAuctionProps;
     detailsProps: InvoiceDetailsProps;
   } = mapListingToInvoiceSections(
     listingData,
@@ -103,9 +107,9 @@ export const InvoiceTemplate = ({
       <Page size="A4" style={styles.page}>
         <InvoiceHeader {...headerProps} />
         <InvoiceSummary {...summaryProps} />
-        {/* ADD AUCTION DETAILS */}
         <InvoiceTable {...tableProps} />
         <InvoiceFeaturesAndConditionSection {...featuresProps} />
+        {listingData.isAuction && <InvoiceAuction {...auctionProps} />}
         <InvoiceDetails {...detailsProps} />
       </Page>
     </Document>

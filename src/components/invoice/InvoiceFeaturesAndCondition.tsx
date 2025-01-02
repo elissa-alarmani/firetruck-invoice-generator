@@ -33,7 +33,9 @@ const formatNumberWithCommas = (number: number) =>
 
 const getCurrentYear = () => new Date().getFullYear();
 
-export const InvoiceFeaturesAndConditionSection: React.FC<InvoiceFeaturesAndConditionProps> = ({
+export const InvoiceFeaturesAndConditionSection: React.FC<
+  InvoiceFeaturesAndConditionProps
+> = ({
   itemBrand,
   mileage,
   itemAge,
@@ -99,4 +101,3 @@ export const InvoiceFeaturesAndConditionSection: React.FC<InvoiceFeaturesAndCond
     </View>
   );
 };
-

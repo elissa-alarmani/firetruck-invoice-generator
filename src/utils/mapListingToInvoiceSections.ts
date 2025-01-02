@@ -5,6 +5,7 @@ import {
   InvoiceTableProps,
   InvoiceFeaturesAndConditionProps,
   InvoiceDetailsProps,
+  InvoiceAuctionProps,
 } from '@/types/InvoiceProps';
 
 export function mapListingToInvoiceSections(
@@ -17,6 +18,7 @@ export function mapListingToInvoiceSections(
   summaryProps: InvoiceSummaryProps;
   tableProps: InvoiceTableProps;
   featuresProps: InvoiceFeaturesAndConditionProps;
+  auctionProps: InvoiceAuctionProps;
   detailsProps: InvoiceDetailsProps;
 } {
   return {
@@ -53,6 +55,10 @@ export function mapListingToInvoiceSections(
       hasRust: listingData.hasRust,
       isFourWheelDrive: listingData.isFourWheelDrive,
     } as InvoiceFeaturesAndConditionProps,
+    auctionProps: {
+      expirationDate: listingData.expirationDate,
+      finalPrice: listingData.finalPrice,
+    } as InvoiceAuctionProps,
     detailsProps: {
       listingDescription: listingData.listingDescription,
       imageUrls: listingData.imageUrls,

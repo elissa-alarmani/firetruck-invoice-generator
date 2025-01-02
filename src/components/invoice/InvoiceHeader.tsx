@@ -66,7 +66,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({ id, sellingPrice }) => {
+export const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
+  id,
+  sellingPrice,
+}) => {
   return (
     <View style={styles.container}>
       {/* Left: Logo */}
