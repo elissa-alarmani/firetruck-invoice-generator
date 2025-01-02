@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from '@react-pdf/renderer';
 import { ListingResponseData } from '@/types/ListingResponseData';
 
+/* eslint-disable jsx-a11y/alt-text */
+
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
