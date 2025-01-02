@@ -12,14 +12,14 @@ interface InvoicePreviewProps {
   onDownload: () => void;
 }
 
-export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
+export function InvoicePreview({
   isOpen,
   listingData,
   recipientName,
   email,
   listingUrl,
   onDownload,
-}) => {
+} : InvoicePreviewProps)  {
   if (!listingData) return null;
 
   return (

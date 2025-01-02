@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InvoiceTable: React.FC<InvoiceTableProps> = ({
+export function InvoiceTable ({
   sellingPrice,
   listingTitle,
-}) => {
+}: InvoiceTableProps){
   const subtotal = sellingPrice;
   const tax = 0;
   const total = subtotal + tax;

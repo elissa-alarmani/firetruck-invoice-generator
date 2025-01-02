@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
+export function InvoiceDetails ({
   listingDescription,
   imageUrls,
   listingUrl,
-}) => {
+}: InvoiceDetailsProps) {
   return (
     <View style={styles.container}>
       {/* Description */}

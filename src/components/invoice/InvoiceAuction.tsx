@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InvoiceAuction: React.FC<InvoiceAuctionProps> = ({
+export function InvoiceAuction({
   expirationDate,
   finalPrice,
-}) => {
+}: InvoiceAuctionProps) {
   const auctionDetails = [
     expirationDate
       ? `Auction Expiration: ${new Date(expirationDate).toLocaleDateString(
