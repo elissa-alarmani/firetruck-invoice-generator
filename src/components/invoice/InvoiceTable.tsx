@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { ListingResponseData } from '@/types/ListingResponseData';
+import { InvoiceTableProps } from '@/types/InvoiceProps';
 
 const styles = StyleSheet.create({
   table: {
@@ -54,12 +54,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceTable = ({
-  listingData,
-}: {
-  listingData: ListingResponseData;
+const InvoiceTable: React.FC<InvoiceTableProps> = ({
+  sellingPrice,
+  listingTitle,
 }) => {
-  const subtotal = listingData.sellingPrice;
+  const subtotal = sellingPrice;
   const tax = 0;
   const total = subtotal + tax;
 
@@ -73,7 +72,7 @@ const InvoiceTable = ({
           <Text style={[styles.tableCell, styles.header]}>Price</Text>
         </View>
         <View style={styles.tableRow}>
-          <Text style={styles.tableCell}>{listingData.listingTitle}</Text>
+          <Text style={styles.tableCell}>{listingTitle}</Text>
           <Text style={styles.tableCell}>1</Text>
           <Text style={styles.tableCell}>${subtotal.toLocaleString()}</Text>
         </View>

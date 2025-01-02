@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { ListingResponseData } from '@/types/ListingResponseData';
+import { InvoiceSummaryProps } from '@/types/InvoiceProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,14 +27,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceSummary = ({
-  listingData,
+const InvoiceSummary: React.FC<InvoiceSummaryProps> = ({
+  userEmail,
+  addressPrimary,
+  addressSecondary,
+  addressCity,
+  addressState,
+  addressZip,
   recipientName,
   email,
-}: {
-  listingData: ListingResponseData;
-  recipientName: string;
-  email: string;
 }) => {
   return (
     <View style={styles.container}>
@@ -46,15 +47,13 @@ const InvoiceSummary = ({
         </View>
         <View style={styles.column}>
           <Text style={styles.label}>From:</Text>
-          <Text style={styles.value}>{listingData.user.email}</Text>
+          <Text style={styles.value}>{userEmail}</Text>
           <Text style={styles.value}>
-            {listingData.addressPrimary}
-            {listingData.addressSecondary &&
-              `, ${listingData.addressSecondary}`}
+            {addressPrimary}
+            {addressSecondary && `, ${addressSecondary}`}
           </Text>
           <Text style={styles.value}>
-            {listingData.addressCity}, {listingData.addressState}{' '}
-            {listingData.addressZip}
+            {addressCity}, {addressState} {addressZip}
           </Text>
         </View>
       </View>

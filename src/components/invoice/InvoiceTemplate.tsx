@@ -8,6 +8,14 @@ import { ListingResponseData } from '@/types/ListingResponseData';
 import FeaturesAndConditionSection from './FeaturesAndCondition';
 
 import { Font } from '@react-pdf/renderer';
+import { mapListingToInvoiceSections } from '@/utils/mapListingToInvoiceSections';
+import {
+  FeaturesAndConditionProps,
+  InvoiceDetailsProps,
+  InvoiceHeaderProps,
+  InvoiceSummaryProps,
+  InvoiceTableProps,
+} from '@/types/InvoiceProps';
 
 Font.register({
   family: 'Inter',
@@ -71,18 +79,34 @@ const InvoiceTemplate = ({
   email: string;
   listingUrl: string;
 }) => {
+  const {
+    headerProps,
+    summaryProps,
+    tableProps,
+    featuresProps,
+    detailsProps,
+  }: {
+    headerProps: InvoiceHeaderProps;
+    summaryProps: InvoiceSummaryProps;
+    tableProps: InvoiceTableProps;
+    featuresProps: FeaturesAndConditionProps;
+    detailsProps: InvoiceDetailsProps;
+  } = mapListingToInvoiceSections(
+    listingData,
+    recipientName,
+    email,
+    listingUrl,
+  );
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <InvoiceHeader listingData={listingData} />
-        <InvoiceSummary
-          listingData={listingData}
-          recipientName={recipientName}
-          email={email}
-        />
-        <InvoiceTable listingData={listingData} />
-        <FeaturesAndConditionSection listingData={listingData} />
-        <InvoiceDetails listingData={listingData} listingUrl={listingUrl} />
+        <InvoiceHeader {...headerProps} />
+        <InvoiceSummary {...summaryProps} />
+        {/* ADD AUCTION DETAILS */}
+        <InvoiceTable {...tableProps} />
+        <FeaturesAndConditionSection {...featuresProps} />
+        <InvoiceDetails {...detailsProps} />
       </Page>
     </Document>
   );

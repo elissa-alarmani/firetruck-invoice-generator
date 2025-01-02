@@ -23,7 +23,7 @@ export type ListingResponseData = {
   mileage: number;
   hasServiceRecords: boolean;
   hasRust: boolean;
-  isFourWheelDrive: boolean | null;
+  isFourWheelDrive: boolean;
   tankSize: number;
   pumpSize: number;
   hasPumpTest: boolean;

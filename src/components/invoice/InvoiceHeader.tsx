@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Link } from '@react-pdf/renderer';
-import { ListingResponseData } from '@/types/ListingResponseData';
+import { InvoiceHeaderProps } from '@/types/InvoiceProps';
 
 /* eslint-disable jsx-a11y/alt-text */
 
@@ -66,11 +66,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceHeader = ({
-  listingData,
-}: {
-  listingData: ListingResponseData;
-}) => {
+const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({ id, sellingPrice }) => {
   return (
     <View style={styles.container}>
       {/* Left: Logo */}
@@ -86,7 +82,7 @@ const InvoiceHeader = ({
       {/* Right: Invoice Details */}
       <View style={styles.rightColumn}>
         <Text style={styles.invoiceTitle}>INVOICE</Text>
-        <Text style={styles.label}># {listingData.id.slice(0, 9)}</Text>
+        <Text style={styles.label}># {id.slice(0, 9)}</Text>
         <View style={styles.dateLabel}>
           <Text style={styles.invoiceDateLabel}>Date:</Text>
           <Text style={styles.label}>
@@ -98,7 +94,7 @@ const InvoiceHeader = ({
           </Text>
         </View>
         <Text style={styles.invoiceBalanceDue}>
-          Balance Due: {`$${listingData.sellingPrice.toLocaleString()}`}
+          Balance Due: {`$${sellingPrice.toLocaleString()}`}
         </Text>
       </View>
     </View>

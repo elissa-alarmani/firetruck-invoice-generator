@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from '@react-pdf/renderer';
-import { ListingResponseData } from '@/types/ListingResponseData';
+import { InvoiceDetailsProps } from '@/types/InvoiceProps';
 
 /* eslint-disable jsx-a11y/alt-text */
 
@@ -57,12 +57,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceDetails = ({
-  listingData,
+const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
+  listingDescription,
+  imageUrls,
   listingUrl,
-}: {
-  listingData: ListingResponseData;
-  listingUrl: string;
 }) => {
   return (
     <View style={styles.container}>
@@ -75,13 +73,13 @@ const InvoiceDetails = ({
           <Text style={styles.listingText}>View listing: </Text>
           <Text style={styles.listingLink}>{listingUrl}</Text>
         </View>
-        <Text style={styles.description}>{listingData.listingDescription}</Text>
+        <Text style={styles.description}>{listingDescription}</Text>
       </View>
 
       {/* Image */}
       <View style={styles.imageContainer}>
-        {listingData.imageUrls?.[0] ? (
-          <Image style={styles.image} src={listingData.imageUrls[0]} />
+        {imageUrls?.[0] ? (
+          <Image style={styles.image} src={imageUrls[0]} />
         ) : (
           <Text style={styles.noImage}>No image available</Text>
         )}

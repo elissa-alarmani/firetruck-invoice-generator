@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { ListingResponseData } from '@/types/ListingResponseData';
+import { FeaturesAndConditionProps } from '@/types/InvoiceProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,45 +33,44 @@ const formatNumberWithCommas = (number: number) =>
 
 const getCurrentYear = () => new Date().getFullYear();
 
-const FeaturesAndConditionSection = ({
-  listingData,
-}: {
-  listingData: ListingResponseData;
+const FeaturesAndConditionSection: React.FC<FeaturesAndConditionProps> = ({
+  itemBrand,
+  mileage,
+  itemAge,
+  itemLength,
+  itemWidth,
+  itemHeight,
+  itemWeight,
+  tankSize,
+  pumpSize,
+  hasPumpTest,
+  hasServiceRecords,
+  hasRust,
+  isFourWheelDrive,
 }) => {
   const specifications = [
-    `Brand: ${listingData.itemBrand}`,
-    `Mileage: ${listingData.mileage !== null ? formatNumberWithCommas(listingData.mileage) + ' miles' : 'Not Available'}`,
-    listingData.itemAge !== null
-      ? `Age: ${getCurrentYear() - listingData.itemAge} years`
-      : null,
-    listingData.itemLength
+    `Brand: ${itemBrand}`,
+    `Mileage: ${mileage !== null ? formatNumberWithCommas(mileage) + ' miles' : 'Not Available'}`,
+    itemAge !== null ? `Age: ${getCurrentYear() - itemAge} years` : null,
+    itemLength
       ? `Dimensions: ${formatNumberWithCommas(
-          listingData.itemLength,
+          itemLength,
         )}ft x ${formatNumberWithCommas(
-          listingData.itemWidth,
-        )}ft x ${formatNumberWithCommas(listingData.itemHeight)}ft`
+          itemWidth,
+        )}ft x ${formatNumberWithCommas(itemHeight)}ft`
       : null,
-    listingData.itemWeight
-      ? `Weight: ${formatNumberWithCommas(listingData.itemWeight)} lbs`
-      : null,
-    listingData.tankSize
-      ? `Tank Size: ${formatNumberWithCommas(listingData.tankSize)} gallons`
-      : null,
-    listingData.pumpSize
-      ? `Pump Size: ${formatNumberWithCommas(listingData.pumpSize)} GPM`
-      : null,
+    itemWeight ? `Weight: ${formatNumberWithCommas(itemWeight)} lbs` : null,
+    tankSize ? `Tank Size: ${formatNumberWithCommas(tankSize)} gallons` : null,
+    pumpSize ? `Pump Size: ${formatNumberWithCommas(pumpSize)} GPM` : null,
   ].filter(Boolean);
 
   const condition = [
-    listingData.hasServiceRecords
+    hasServiceRecords
       ? 'Service Records: Available'
       : 'Service Records: Not Available',
-    listingData.hasRust ? 'Rust: Yes' : 'Rust: No',
-    listingData.isFourWheelDrive !== null
-      ? listingData.isFourWheelDrive
-        ? 'Drive: 4WD enabled'
-        : 'Drive: Not 4WD'
-      : null,
+    hasPumpTest ? 'Pump Test: Available' : 'Pump Test: Not Available',
+    hasRust ? 'Rust: Yes' : 'Rust: No',
+    isFourWheelDrive ? 'Drive: 4WD enabled' : 'Drive: Not 4WD',
   ].filter(Boolean);
 
   return (
