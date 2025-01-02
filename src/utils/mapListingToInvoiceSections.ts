@@ -3,7 +3,7 @@ import {
   InvoiceHeaderProps,
   InvoiceSummaryProps,
   InvoiceTableProps,
-  FeaturesAndConditionProps,
+  InvoiceFeaturesAndConditionProps,
   InvoiceDetailsProps,
 } from '@/types/InvoiceProps';
 
@@ -16,7 +16,7 @@ export function mapListingToInvoiceSections(
   headerProps: InvoiceHeaderProps;
   summaryProps: InvoiceSummaryProps;
   tableProps: InvoiceTableProps;
-  featuresProps: FeaturesAndConditionProps;
+  featuresProps: InvoiceFeaturesAndConditionProps;
   detailsProps: InvoiceDetailsProps;
 } {
   return {
@@ -52,7 +52,7 @@ export function mapListingToInvoiceSections(
       hasServiceRecords: listingData.hasServiceRecords,
       hasRust: listingData.hasRust,
       isFourWheelDrive: listingData.isFourWheelDrive,
-    } as FeaturesAndConditionProps,
+    } as InvoiceFeaturesAndConditionProps,
     detailsProps: {
       listingDescription: listingData.listingDescription,
       imageUrls: listingData.imageUrls,

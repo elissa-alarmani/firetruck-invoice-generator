@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
+export const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
   listingDescription,
   imageUrls,
   listingUrl,
@@ -87,5 +87,3 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
     </View>
   );
 };
-
-export default InvoiceDetails;

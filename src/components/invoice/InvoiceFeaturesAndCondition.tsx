@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { FeaturesAndConditionProps } from '@/types/InvoiceProps';
+import { InvoiceFeaturesAndConditionProps } from '@/types/InvoiceProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +33,7 @@ const formatNumberWithCommas = (number: number) =>
 
 const getCurrentYear = () => new Date().getFullYear();
 
-const FeaturesAndConditionSection: React.FC<FeaturesAndConditionProps> = ({
+export const InvoiceFeaturesAndConditionSection: React.FC<InvoiceFeaturesAndConditionProps> = ({
   itemBrand,
   mileage,
   itemAge,
@@ -100,4 +100,3 @@ const FeaturesAndConditionSection: React.FC<FeaturesAndConditionProps> = ({
   );
 };
 
-export default FeaturesAndConditionSection;

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({
+export const InvoiceTable: React.FC<InvoiceTableProps> = ({
   sellingPrice,
   listingTitle,
 }) => {
@@ -96,5 +96,3 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
     </>
   );
 };
-
-export default InvoiceTable;

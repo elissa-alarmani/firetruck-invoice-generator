@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import Form from '../components/InvoiceForm';
 import { fetchListing } from '../services/api';
 import { ListingResponseData } from '@/types/ListingResponseData';
-import InvoiceTemplate from '@/components/invoice/InvoiceTemplate';
 import { PDFViewer } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import Image from 'next/image';
+import { InvoiceTemplate } from '@/components/invoice/InvoiceTemplate';
 
 export default function Home() {
   const [recipientName, setRecipientName] = useState('');

@@ -19,7 +19,7 @@ export type InvoiceTableProps = {
   listingTitle: string;
 };
 
-export type FeaturesAndConditionProps = {
+export type InvoiceFeaturesAndConditionProps = {
   itemBrand: string;
   mileage: number;
   itemAge: number;

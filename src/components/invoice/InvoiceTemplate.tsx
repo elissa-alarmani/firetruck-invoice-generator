@@ -1,16 +1,16 @@
 import React from 'react';
 import { Page, Document, StyleSheet } from '@react-pdf/renderer';
-import InvoiceHeader from './InvoiceHeader';
-import InvoiceSummary from './InvoiceSummary';
-import InvoiceTable from './InvoiceTable';
-import InvoiceDetails from './InvoiceDetails';
+import { InvoiceHeader } from './InvoiceHeader';
+import { InvoiceDetails } from './InvoiceDetails';
+import { InvoiceSummary } from './InvoiceSummary';
+import { InvoiceTable } from './InvoiceTable';
 import { ListingResponseData } from '@/types/ListingResponseData';
-import FeaturesAndConditionSection from './FeaturesAndCondition';
-
+import { InvoiceFeaturesAndConditionSection } from './InvoiceFeaturesAndCondition';
 import { Font } from '@react-pdf/renderer';
 import { mapListingToInvoiceSections } from '@/utils/mapListingToInvoiceSections';
+
 import {
-  FeaturesAndConditionProps,
+  InvoiceFeaturesAndConditionProps,
   InvoiceDetailsProps,
   InvoiceHeaderProps,
   InvoiceSummaryProps,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceTemplate = ({
+export const InvoiceTemplate = ({
   listingData,
   recipientName,
   email,
@@ -89,7 +89,7 @@ const InvoiceTemplate = ({
     headerProps: InvoiceHeaderProps;
     summaryProps: InvoiceSummaryProps;
     tableProps: InvoiceTableProps;
-    featuresProps: FeaturesAndConditionProps;
+    featuresProps: InvoiceFeaturesAndConditionProps;
     detailsProps: InvoiceDetailsProps;
   } = mapListingToInvoiceSections(
     listingData,
@@ -105,11 +105,9 @@ const InvoiceTemplate = ({
         <InvoiceSummary {...summaryProps} />
         {/* ADD AUCTION DETAILS */}
         <InvoiceTable {...tableProps} />
-        <FeaturesAndConditionSection {...featuresProps} />
+        <InvoiceFeaturesAndConditionSection {...featuresProps} />
         <InvoiceDetails {...detailsProps} />
       </Page>
     </Document>
   );
 };
-
-export default InvoiceTemplate;

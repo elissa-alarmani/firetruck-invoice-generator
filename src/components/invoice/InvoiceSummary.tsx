@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceSummary: React.FC<InvoiceSummaryProps> = ({
+export const InvoiceSummary: React.FC<InvoiceSummaryProps> = ({
   userEmail,
   addressPrimary,
   addressSecondary,
@@ -60,5 +60,3 @@ const InvoiceSummary: React.FC<InvoiceSummaryProps> = ({
     </View>
   );
 };
-
-export default InvoiceSummary;
