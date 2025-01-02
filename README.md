@@ -1,9 +1,9 @@
 # Fire Truck Invoice Generator 🚒
 
 ## Overview
-The **Fire Truck Invoice Generator** is a Next.js app that allows users to create and download PDF invoices for fire truck listings on [Garage](https://www.withgarage.com/). By integrating with Garage’s backend API, the app fetches listing details and dynamically generates a professional invoice based on the provided input.
+The **Fire Truck Invoice Generator** is a Next.js app that allows users to create and download PDF invoices for fire truck listings on [Garage](https://www.withgarage.com/). By integrating with Garage’s backend API, the app fetches listing details and dynamically generates an invoice based on the provided input.
 
-View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-generator.vercel.app/)!
+View it here at: [Fire Truck Invoice Generator](https://firetruck-invoice-generator.vercel.app/)!
 
 ---
 
@@ -21,7 +21,7 @@ View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-gener
 1. Open the app in your browser at [https://firetruck-invoice-generator.vercel.app/](https://firetruck-invoice-generator.vercel.app/).
 2. Enter the fire truck listing URL from [Garage](https://www.withgarage.com/), recipient’s name, and email address.
 3. Preview the generated invoice in the application.
-4. Download the PDF.
+4. Download the PDF, either in the PDF Viewer or with the Download button.
 
 ---
 ## File Structure
@@ -52,17 +52,20 @@ View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-gener
 ## Thought Process
 
 ### Code Decisions
-1. **TypeScript Usage**:
-   - Employed TypeScript for robust type safety, ensuring reliable and predictable API interactions.
-   - Defined specific types (e.g., `ListingResponseData`, `InvoiceProps`) to reduce ambiguity and streamline development.
+1. **TypeScript**:
+   - TypeScript's robust type safety helps ensure reliable and predictable API interactions.
+   - Being able to define specific types (e.g., `ListingResponseData`, `InvoiceProps`) helps reduce ambiguity and streamline development.
 
 2. **Validation**:
    - Implemented email and URL validation in `InvoiceForm` using regex patterns.
-   - Provided user-friendly error messages to improve the form’s usability.
+   - Provided user-friendly error messages to improve the form’s usability, noting that the error will be displayed `onBlur`, when the user leaves the text input. 
 
-3. **PDF Generation**:
+3. **Data Mapping**:
+   - Utilizes `mapListingToInvoiceSections.ts` to cleanly transform the API response data into structured sections, allowing for a simplier process in rendering the invoice components.
+
+4. **PDF Generation**:
    - Used `@react-pdf/renderer` for modular and customizable invoice creation.
-   - Designed the `InvoiceTemplate` component to orchestrate the layout using props mapped from API data.
+   - Designed the `InvoiceTemplate` component to compile the layout using broken down subcomponents and their respective props mapped from API data.
 
 ### Design Decisions
 1. **Modular Architecture**:
@@ -79,17 +82,8 @@ View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-gener
 4. **API Interaction**:
    - Centralized API calls in `src/services/api.ts` to separate business logic from UI components.
 
-### Notable Code Highlights
-1. **Input Validation**:
-   - Email validation ensures addresses conform to common formats.
-   - URL validation restricts input to Garage listing URLs, reducing errors and invalid API calls.
-
-2. **Mapping API Data**:
-   - The `mapListingToInvoiceSections` utility cleanly transforms raw API data into structured props for invoice components.
-
-3. **Error Handling**:
-   - Display meaningful error messages for failed API calls and invalid inputs.
-   - Graceful fallback if no data is returned.
+5. **Invoice Styling**:
+     - Specifically for the invoice, decided to provide all the same information as the current invoice as well as sections for more detailed item features, auction details, and condition of the item. 
 
 ---
 
@@ -141,18 +135,6 @@ View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-gener
 
 ---
 
-## API Details
-- **Endpoint**: `POST https://garage-backend.onrender.com/getListing`
-- **Payload**:
-   ```json
-   {
-     "id": "<UUID>"
-   }
-   ```
-- **Response**: JSON object containing details like title, description, and price.
-
----
-
 ## Technologies Used
 - **Framework**: Next.js
 - **Styling**: TailwindCSS and `@react-pdf/renderer`
@@ -160,4 +142,3 @@ View this app at: [Fire Truck Invoice Generator](https://firetruck-invoice-gener
 - **TypeScript**: Comprehensive type definitions
 - **API Integration**: Axios
 - **Testing**: Jest for unit tests
-
