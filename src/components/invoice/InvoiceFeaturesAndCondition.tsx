@@ -33,9 +33,7 @@ const formatNumberWithCommas = (number: number) =>
 
 const getCurrentYear = () => new Date().getFullYear();
 
-export const InvoiceFeaturesAndConditionSection: React.FC<
-  InvoiceFeaturesAndConditionProps
-> = ({
+export function InvoiceFeaturesAndConditionSection({
   itemBrand,
   mileage,
   itemAge,
@@ -49,7 +47,7 @@ export const InvoiceFeaturesAndConditionSection: React.FC<
   hasServiceRecords,
   hasRust,
   isFourWheelDrive,
-}) => {
+}: InvoiceFeaturesAndConditionProps) {
   const specifications = [
     `Brand: ${itemBrand}`,
     `Mileage: ${mileage !== null ? formatNumberWithCommas(mileage) + ' miles' : 'Not Available'}`,
@@ -100,4 +98,4 @@ export const InvoiceFeaturesAndConditionSection: React.FC<
       </View>
     </View>
   );
-};
+}
