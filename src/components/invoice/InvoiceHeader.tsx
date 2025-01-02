@@ -85,7 +85,7 @@ export function InvoiceHeader({
       {/* Right: Invoice Details */}
       <View style={styles.rightColumn}>
         <Text style={styles.invoiceTitle}>INVOICE</Text>
-        <Text style={styles.label}># {id.slice(0, 9)}</Text>
+        <Text style={styles.label}># {id.slice(0, 8)}</Text>
         <View style={styles.dateLabel}>
           <Text style={styles.invoiceDateLabel}>Date:</Text>
           <Text style={styles.label}>
